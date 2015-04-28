@@ -2,6 +2,12 @@
 
 Helper to work with application menu in nwjs (node-webkit)
 
+#### Install:
+
+```
+npm install nw-appmenu
+```
+
 #### Example:
 
 ```js
@@ -29,7 +35,7 @@ var menu = {
       key: '0'
     },
     'separator2': 'separator',
-    'Inspector': {
+    Inspector: {
       click: function () {
         var win = gui.Window.get();
         if (win.isDevToolsOpen()) {
@@ -55,5 +61,7 @@ var menu = {
 AppMenu.createAndExtend(menu);
 
 ```
+
+![screen shot 2015-04-29 at 1 55 56](https://cloud.githubusercontent.com/assets/26019/7377889/6eb537e4-ee13-11e4-9127-d687afa0e968.png)
 
 I extrac this code from [Postbird](https://github.com/Paxa/postbird), please see `example_app` folder for more features and options.

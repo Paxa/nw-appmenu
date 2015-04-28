@@ -1,0 +1,9 @@
+{
+  "name": "nw-appmenu",
+  "description": "nwjs helper to work with application menu",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/Paxa/nw-appmenu"
+  },
+  "main": "main.js"
+}
