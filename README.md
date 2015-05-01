@@ -13,6 +13,7 @@ npm install nw-appmenu
 ```js
 var AppMenu = require('nw-appmenu');
 
+// we will add Zoom In, Zoom Out, Inspector, Reload, Help items to window menu
 var menu = {
   'Window': {
     'separator': 'separator',
