@@ -19,24 +19,48 @@ var AppMenu = {
       if (!nativeSubmenu) {
         nativeSubmenu = new gui.Menu();
         var position = nativeMenuBar.items.length - 1;
-        nativeMenuBar.insert(new gui.MenuItem({label: submenuName, submenu: nativeSubmenu}), position);
+        try {
+          nativeMenuBar.insert(new gui.MenuItem({label: submenuName, submenu: nativeSubmenu}), position);
+        } catch (error) {
+          console.log("Error inserting submenu", submenuName);
+          console.error(error);
+        }
       }
       Object_forEach(submenu, function (itemName, callback) {
         if (typeof callback == 'string') {
           nativeSubmenu.append(new gui.MenuItem({ type: callback }));
         } else {
           var menuItem;
+          var itemPosition = undefined;
           if (typeof callback == 'object') {
             var options = {label: itemName};
             Object_forEach(callback, function (key, value) {
               options[key] = value;
             });
-            menuItem = new gui.MenuItem(options);
+            try {
+              if (options.position != undefined) {
+                itemPosition = options.position;
+                delete options.position;
+              }
+              menuItem = new gui.MenuItem(options);
+            } catch (error) {
+              console.log("Error creating menu item ", options);
+              console.error(error);
+            }
           } else {
             menuItem = new gui.MenuItem({label: itemName});
             menuItem.click = callback;
           }
-          nativeSubmenu.append(menuItem);
+          try {
+            if (itemPosition != undefined) {
+              nativeSubmenu.insert(menuItem, itemPosition);
+            } else {
+              nativeSubmenu.append(menuItem);
+            }
+          } catch (error) {
+            console.log("Error appending menu item ", menuItem);
+            console.error(error);
+          }
         }
       });
     });

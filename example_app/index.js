@@ -4,6 +4,7 @@ var AppMenu = require('../main.js');
 var menu = {
   '': {
     '~~~ example item ~~~': {
+      position: 1,
       click: function () {
         window.alert('click Example App -> "example item"');
       },
